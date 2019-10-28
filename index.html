@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <title>foodRøulette</title>
+</head>
+<body>
+    <header>
+        <div id="title">
+            <h1>foodRøulette</h1>
+        </div>
+        <div id="navbar"></div>
+    </header>
+    <div id="content">
+        <div class="contentDiv">
+            <div id="eatingDiv" class="splitDiv">
+                <h2>Today you're eating</h2>
+                <h1 id="foodReveal"></h1>
+                <div id="revealDiv">
+
+                </div>
+                <button id="rouletteButton">Roulette</button>
+            </div>
+            <div id="menuDiv" class=splitDiv>
+                <div>
+                    <h2>Possibilities</h2>
+                    <div id="listDiv">
+
+                    </div>
+                    <div id="addItemDiv">
+                        <input type="text" placeholder="Dish here" id="inputDishField">
+                        <button id="addDishButton">Add dish</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <footer>
+        <div id="footerContent">
+            <p>foodRoulette | Erik Skår</p>
+        </div>
+    </footer>
+    <script>
+    let listDiv = document.querySelector("#listDiv");
+    let inputField = document.querySelector("#inputDishField");
+    let addDishButton = document.querySelector("#addDishButton");
+    let foodReveal = document.querySelector("#foodReveal");
+    let dishArray = [];
+    let rouletteButton = document.querySelector("#rouletteButton");
+
+
+    function addFood(content) {
+        let itemDiv = document.createElement("div");
+        itemDiv.className = "itemDiv"
+        let itemContent = document.createElement("p");
+        itemContent.innerHTML = content;
+        itemDiv.appendChild(itemContent);
+        listDiv.appendChild(itemDiv);
+        dishArray.push(content);
+    }
+
+    addDishButton.addEventListener("click", function() {
+        addFood(inputField.value);
+    });
+
+    function foodRoulette() {
+        let item = Math.floor((Math.random() * dishArray.length));
+        foodReveal.innerHTML = dishArray[item];
+    }
+
+    rouletteButton.addEventListener("click", function() {
+        foodRoulette();
+    })
+
+    addFood("Salmon with broccoli and rice");
+    addFood("Beef with broccoli and rice");
+    addFood("Chicken with broccoli and rice");
+    addFood("Pasta bolognese");
+    addFood("Frozen pizza");
+    
+    </script>
+</body>
+</html>

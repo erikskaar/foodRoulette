@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', serif;
+    overflow-x: hidden;
+    letter-spacing: 2px;
+}
+#content {
+    display: flex;
+    height: 93vh;
+    justify-content: center;
+}
+.contentDiv {
+    width: 80%;
+    border-right: 1px solid black;
+    margin: 1em;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 1em;
+    background-color: #006495;
+    color: white;
+    display: flex;
+}
+.splitDiv {
+    width: 50%;
+}
+#eatingDiv {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+#foodReveal {
+    font-size: 5em;
+}
+#revealDiv {
+    height: 50%;
+    width: 70%;
+    margin: auto;
+}
+#menuDiv {
+    width: 30%;
+    border-left: 2px solid white;
+    padding: 1em;
+    height: 95%;
+    background-color: white;
+    color: #006495;
+}
+#listDiv {
+    height: 65vh;
+    overflow-y: scroll;
+}
+#addItemDiv {
+    display: flex;
+    flex-grow: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1em;
+}
+#inputDishField {
+    width: 100%;
+    font-size: 1em;
+}
+#addDishButton {
+    border: 0;
+    background-color: #006495;
+    color: white;
+    font-size: 1em;
+    padding: 1em 2em 1em 2em;
+    margin: 1em;
+    border-radius: 5px;
+}
+.itemDiv {
+    font-size: 1.5em;
+    border-bottom: 1px solid #006495;
+}
+
+#rouletteButton {
+    background-color: white;
+    border: none;
+    padding: 1em 2em 1em 2em;
+    font-size: 2em;
+    color: #006495;
+    border-radius: 5px;
+    border: 2px solid white;
+    transition: 0.5s;
+    width: 30%;
+    margin: auto;
+}
+#rouletteButton:hover {
+    color: white;
+    background-color: #006495;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#title {
+    height: 7vh;
+    justify-content: left;
+    width: 100%;
+    display: flex;
+    padding-top: 1em;
+    padding-left: 1em;
+    background-color: white;
+
+}
+
+#title h1 {
+    padding: 0;
+    margin: 0;
+    color: #004C70;
+}
+
+
+h2 {
+}
+h1, p {
+    text-align: center;
+}
+footer {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    bottom: 0px;
+    background-color: #333;
+    width: 100%;
+    margin: 0;
+    color: white;
+}
