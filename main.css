@@ -30,9 +30,12 @@ body {
 }
 #foodReveal {
     font-size: 5em;
+    padding: 0;
+    height: 50%;
 }
 #revealDiv {
-    height: 50%;
+    max-height: 30%;
+    min-height: 30%;
     width: 70%;
     margin: auto;
 }
@@ -45,7 +48,7 @@ body {
     color: #006495;
 }
 #listDiv {
-    height: 65vh;
+    height: 45vh;
     overflow-y: scroll;
 }
 #addItemDiv {
@@ -55,9 +58,18 @@ body {
     justify-content: center;
     margin: 1em;
 }
-#inputDishField {
+.inputDishField, .inputDishField:active, .inputDishField:focus {
     width: 100%;
     font-size: 1em;
+    border: none;
+    border-bottom: 1px solid #006495;
+    outline: none;
+    margin: 1em;
+    
+}
+
+input, select, textarea {
+    color: #006495;
 }
 #addDishButton {
     border: 0;
@@ -68,28 +80,52 @@ body {
     margin: 1em;
     border-radius: 5px;
 }
+#addDishButton:hover {
+    cursor: pointer;
+}
+::placeholder {
+    color: #006495;
+}
 .itemDiv {
     font-size: 1.5em;
-    border-bottom: 1px solid #006495;
+}
+
+#optionsDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.optionsContent {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+.optionsContent label {
+    font-size: 1.5em;
+    margin: 0.5em;
 }
 
 #rouletteButton {
-    background-color: white;
+    color: white;
+    background-color: #006495;
     border: none;
     padding: 1em 2em 1em 2em;
     font-size: 2em;
-    color: #006495;
     border-radius: 5px;
     border: 2px solid white;
-    transition: 0.5s;
     width: 30%;
     margin: auto;
+    margin-bottom: 2em;
 }
 #rouletteButton:hover {
-    color: white;
-    background-color: #006495;
-    transition: 0.5s;
     cursor: pointer;
+}
+#rouletteButton:active {
+    transform: translateY(5px);
+}
+#addDishButton:active {
+    transform: translateY(5px);
 }
 #title {
     height: 7vh;
@@ -101,6 +137,10 @@ body {
     background-color: white;
 
 }
+header {
+    position: sticky;
+    top: 0;
+}
 
 #title h1 {
     padding: 0;
@@ -109,7 +149,11 @@ body {
 }
 
 
-h2 {
+h3 {
+    border-bottom: 1px solid #006495;
+    position: sticky;
+    top: 0px;
+    background-color: white;
 }
 h1, p {
     text-align: center;

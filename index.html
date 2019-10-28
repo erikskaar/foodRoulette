@@ -23,17 +23,41 @@
                 <div id="revealDiv">
 
                 </div>
-                <button id="rouletteButton">Roulette</button>
+                <div id="optionsDiv">
+                    <div class="optionsContent">
+                        <label>sides
+                            <input type="checkbox" id="sideCheck">
+                        </label>
+                        <label>sauce
+                            <input type="checkbox" id="sauceCheck">
+                        </label>
+                    </div>
+                    <div class="optionsContent">
+                        <button id="rouletteButton">Roulette</button>
+                    </div>
+                </div>
+                
             </div>
             <div id="menuDiv" class=splitDiv>
                 <div>
                     <h2>Possibilities</h2>
                     <div id="listDiv">
+                        <div id="meatDiv">
+                            <h3>Meats</h3>
+                        </div>
+                        <div id="sideDiv">
+                                <h3>Sides</h3>
+                        </div>
+                        <div id="sauceDiv">
+                                <h3>Sauces</h3>
+                        </div>
 
                     </div>
                     <div id="addItemDiv">
-                        <input type="text" placeholder="Dish here" id="inputDishField">
-                        <button id="addDishButton">Add dish</button>
+                        <input type="text" placeholder="Meat here" id="inputMeatField" class="inputDishField">
+                        <input type="text" placeholder="Side here" id="inputSideField" class="inputDishField">
+                        <input type="text" placeholder="Sauce here" id="inputSauceField" class="inputDishField">
+                        <button id="addDishButton">Add components</button>
                     </div>
                 </div>
             </div>
@@ -47,42 +71,86 @@
     </footer>
     <script>
     let listDiv = document.querySelector("#listDiv");
-    let inputField = document.querySelector("#inputDishField");
+
+    let meatInputField = document.querySelector("#inputMeatField");
+    let sideInputField = document.querySelector("#inputSideField");
+    let sauceInputField = document.querySelector("#inputSauceField");
+
+    let meatDiv = document.querySelector("#meatDiv");
+    let sideDiv = document.querySelector("#sideDiv");
+    let sauceDiv = document.querySelector("#sauceDiv");
+    
+    let sideCheck = document.querySelector("#sideCheck");
+    let sauceCheck = document.querySelector("#sauceCheck");
+
     let addDishButton = document.querySelector("#addDishButton");
+
     let foodReveal = document.querySelector("#foodReveal");
-    let dishArray = [];
+
+    let meatArray = [];
+    let sideArray = [];
+    let sauceArray = [];
     let rouletteButton = document.querySelector("#rouletteButton");
 
 
-    function addFood(content) {
+    function addFood(meat, side, sauce) {
+        if (meat != "") {
+            addItem(meat, meatDiv, meatArray);
+        }
+        if (side != "") {
+            addItem(side, sideDiv, sideArray);
+        }
+        if (sauce != "") {
+            addItem(sauce, sauceDiv, sauceArray);
+        }
+    }
+
+    function addItem(content, type, typeArray) {
         let itemDiv = document.createElement("div");
         itemDiv.className = "itemDiv"
         let itemContent = document.createElement("p");
         itemContent.innerHTML = content;
         itemDiv.appendChild(itemContent);
-        listDiv.appendChild(itemDiv);
-        dishArray.push(content);
+        type.appendChild(itemDiv);
+        typeArray.push(content);
     }
 
     addDishButton.addEventListener("click", function() {
-        addFood(inputField.value);
+        addFood(meatInputField.value, sideInputField.value, sauceInputField.value);
+        meatInputField.value = "";
+        sideInputField.value = "";
+        sauceInputField.value = "";
+        
     });
 
     function foodRoulette() {
-        let item = Math.floor((Math.random() * dishArray.length));
-        foodReveal.innerHTML = dishArray[item];
+        let meatItem = Math.floor((Math.random() * meatArray.length));
+        let sideItem = Math.floor((Math.random() * sideArray.length));
+        let sauceItem = Math.floor((Math.random() * sauceArray.length));
+
+        if (sideCheck.checked && sauceCheck.checked) {
+            foodReveal.innerHTML = meatArray[meatItem] + " with " + sideArray[sideItem] + " and " + sauceArray[sauceItem];
+        } else if (sideCheck.checked && !sauceCheck.checked) {
+            foodReveal.innerHTML = meatArray[meatItem] + " with " + sideArray[sideItem];
+        } else if (!sideCheck.checked && sauceCheck.checked) {
+            foodReveal.innerHTML = meatArray[meatItem] + " with " + sauceArray[sauceItem];
+        } else {
+            foodReveal.innerHTML = meatArray[meatItem];
+        }
+        
     }
 
     rouletteButton.addEventListener("click", function() {
+        rouletteButton.style.bottom = "10px";
         foodRoulette();
     })
 
-    addFood("Salmon with broccoli and rice");
-    addFood("Beef with broccoli and rice");
-    addFood("Chicken with broccoli and rice");
-    addFood("Pasta bolognese");
-    addFood("Frozen pizza");
-    
+    addFood("steak", "potatoes", "bernaise");
+    addFood("chicken", "rice", "pepper sauce");
+    addFood("salmon", "broccoli", "ketchup");
+    addFood("beef", "salad", "mustard");
+    addFood("lasagna", "pasta", "red wine sauce");
+
     </script>
 </body>
 </html>
