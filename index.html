@@ -18,11 +18,9 @@
     <div id="content">
         <div class="contentDiv">
             <div id="eatingDiv" class="splitDiv">
-                <h2>Today you're eating</h2>
+                <h2>Today you're eating<span id="showButton">Show Menu</span></h2>
                 <h1 id="foodReveal"></h1>
-                <div id="revealDiv">
 
-                </div>
                 <div id="optionsDiv">
                     <div class="optionsContent">
                         <label>sides
@@ -40,7 +38,7 @@
             </div>
             <div id="menuDiv" class=splitDiv>
                 <div>
-                    <h2>Possibilities</h2>
+                  <h2>Possibilities<span id="hideButton">Hide Menu</span></h2>
                     <div id="listDiv">
                         <div id="meatDiv">
                             <h3>Meats</h3>
@@ -139,6 +137,20 @@
         }
         
     }
+    document.querySelector("#showButton").addEventListener("click", function() {
+        document.querySelector("#showButton").style.display = "none";
+        document.querySelector("#menuDiv").style.display = "flex";
+        document.querySelector("#menuDiv").style.width = "100%";
+        document.querySelector("#eatingDiv").style.display = "none";
+    })
+    document.querySelector("#hideButton").addEventListener("click", function() {
+        document.querySelector("#hideButton").style.display = "none";
+        document.querySelector("#menuDiv").style.display = "none";
+        document.querySelector("#eatingDiv").style.display = "flex";
+        document.querySelector("#eatingDiv").style.width = "100%";
+        document.querySelector("#showButton").style.display = "flex";
+    
+    })
 
     rouletteButton.addEventListener("click", function() {
         rouletteButton.style.bottom = "10px";
