@@ -221,3 +221,8 @@ h2 {
     padding: 0.5em;
 }
 
+.remove {
+  float: right;
+  padding-right: 1em;
+  color: red;
+}

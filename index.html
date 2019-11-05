@@ -110,9 +110,10 @@
 
     function addItem(content, type, contentArray) {
         let itemDiv = document.createElement("div");
-        itemDiv.className = "itemDiv"
+        itemDiv.className = "itemDiv";
         let itemContent = document.createElement("p");
-        itemContent.innerHTML = content;
+        itemContent.className = type.id;
+      itemContent.innerHTML = content + "<span class='remove'>X</span>";
         itemDiv.appendChild(itemContent);
         type.appendChild(itemDiv);
         console.log(content);
@@ -168,13 +169,35 @@
       localStorage.setItem(type, JSON.stringify(content));
     }
     function retrieveFromStorage(content, type, contentArray) {
-      for (let x = 0; x<JSON.parse(localStorage.getItem(content)).length;x++) {
-        addItem(JSON.parse(localStorage.getItem(content))[x], type,
+      for (let x = 0; x<JSON.parse(localStorage.getItem(content)).length;x++)         addItem(JSON.parse(localStorage.getItem(content))[x], type,
           contentArray);
       }
+    
+
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.className == "remove") {
+        e.target.parentElement.parentElement.remove();
+        let element = e.target.parentElement.firstChild.innerHTML;
+        let classname = e.target.parentElement.className;
+        deleteFromArray(element, classname);
+      }
+    });
+    function deleteFromArray(element, id) {
+      if (id == "meatDiv") {
+        meatArray.splice(meatArray.indexOf(element), 1);
+        saveToStorage("meats", meatArray);
+      } else if(id == "sideDiv") {
+        sideArray.splice(sideArray.indexOf(element), 1);
+        saveToStorage("sides", sideArray);
+      } else if (id == "sauceDiv") {
+        sauceArray.splice(sauceArray.indexOf(id), 1);
+        saveToStorage("sauces", sauceArray);
+      }
     }
+
+
+
     function init() {
-      console.log(meatArray);
       retrieveFromStorage("meats", meatDiv, meatArray);
       retrieveFromStorage("sides", sideDiv, sideArray);
       retrieveFromStorage("sauces", sauceDiv, sauceArray);
