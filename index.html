@@ -113,7 +113,7 @@
         itemDiv.className = "itemDiv";
         let itemContent = document.createElement("p");
         itemContent.className = type.id;
-      itemContent.innerHTML = content + "<span class='remove'>X</span>";
+        itemContent.innerHTML = content + "<span class='remove'>X</span>";
         itemDiv.appendChild(itemContent);
         type.appendChild(itemDiv);
         console.log(content);
@@ -176,21 +176,25 @@
 
     document.addEventListener("click", function(e) {
       if (e.target && e.target.className == "remove") {
+        let element;
+        let classname;
         e.target.parentElement.parentElement.remove();
-        let element = e.target.parentElement.firstChild.innerHTML;
-        let classname = e.target.parentElement.className;
+        element = e.target.parentElement.innerText.slice(0, -1);
+        classname = e.target.parentElement.className;
+        console.log(element);
         deleteFromArray(element, classname);
       }
     });
     function deleteFromArray(element, id) {
       if (id == "meatDiv") {
+        console.log(element);
         meatArray.splice(meatArray.indexOf(element), 1);
         saveToStorage("meats", meatArray);
       } else if(id == "sideDiv") {
         sideArray.splice(sideArray.indexOf(element), 1);
         saveToStorage("sides", sideArray);
       } else if (id == "sauceDiv") {
-        sauceArray.splice(sauceArray.indexOf(id), 1);
+        sauceArray.splice(sauceArray.indexOf(element), 1);
         saveToStorage("sauces", sauceArray);
       }
     }
