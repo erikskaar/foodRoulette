@@ -11,7 +11,6 @@ body {
 }
 .contentDiv {
     width: 80%;
-    border-right: 1px solid black;
     margin: 1em;
     margin-bottom: 0;
     margin-top: 0;
@@ -168,15 +167,20 @@ footer {
 @media only screen and (max-width: 900px) {
     #eatingDiv {
       width: 100%;
+      padding: 0;
+      margin: 1em;
     }
     #menuDiv {
       display: none;
+      padding: 0;
+      margin: 1em;
     }
     #showButton, #hideButton {
       display: flex !important;
     }
     h2 {
       padding-top: 0em;
+      font-size: 1em;
     }
     #foodReveal {
       font-size: 2em;
@@ -190,6 +194,12 @@ footer {
     .inputDishField, .inputDishField:active, .inputDishField:focus {
       margin: 0.5em;
       font-size: initial;
+    }
+    .contentDiv {
+      width: 100%;
+      padding: 0;
+      background-color: #006495;
+      margin:0;
     }
 }
 #showButton {
@@ -211,3 +221,8 @@ h2 {
     padding: 0.5em;
 }
 
+.remove {
+  float: right;
+  padding-right: 1em;
+  color: red;
+}

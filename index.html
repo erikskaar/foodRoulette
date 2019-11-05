@@ -88,29 +88,36 @@
     let meatArray = [];
     let sideArray = [];
     let sauceArray = [];
-    let rouletteButton = document.querySelector("#rouletteButton");
 
+    let rouletteButton = document.querySelector("#rouletteButton");
 
     function addFood(meat, side, sauce) {
         if (meat != "") {
             addItem(meat, meatDiv, meatArray);
+            saveToStorage("meats", meatArray);
         }
+      
         if (side != "") {
             addItem(side, sideDiv, sideArray);
+          
+            saveToStorage("sides", sideArray);
         }
         if (sauce != "") {
             addItem(sauce, sauceDiv, sauceArray);
+            saveToStorage("sauces", sauceArray);
         }
     }
 
-    function addItem(content, type, typeArray) {
+    function addItem(content, type, contentArray) {
         let itemDiv = document.createElement("div");
-        itemDiv.className = "itemDiv"
+        itemDiv.className = "itemDiv";
         let itemContent = document.createElement("p");
-        itemContent.innerHTML = content;
+        itemContent.className = type.id;
+        itemContent.innerHTML = content + "<span class='remove'>X</span>";
         itemDiv.appendChild(itemContent);
         type.appendChild(itemDiv);
-        typeArray.push(content);
+        console.log(content);
+        contentArray.push(content);
     }
 
     addDishButton.addEventListener("click", function() {
@@ -157,12 +164,50 @@
         foodRoulette();
     })
 
-    addFood("steak", "potatoes", "bernaise");
-    addFood("chicken", "rice", "pepper sauce");
-    addFood("salmon", "broccoli", "ketchup");
-    addFood("beef", "salad", "mustard");
-    addFood("lasagna", "pasta", "red wine sauce");
+    
+    function saveToStorage(type, content) {
+      localStorage.setItem(type, JSON.stringify(content));
+    }
+    function retrieveFromStorage(content, type, contentArray) {
+      for (let x = 0; x<JSON.parse(localStorage.getItem(content)).length;x++)         addItem(JSON.parse(localStorage.getItem(content))[x], type,
+          contentArray);
+      }
+    
 
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.className == "remove") {
+        let element;
+        let classname;
+        e.target.parentElement.parentElement.remove();
+        element = e.target.parentElement.innerText.slice(0, -1);
+        classname = e.target.parentElement.className;
+        console.log(element);
+        deleteFromArray(element, classname);
+      }
+    });
+    function deleteFromArray(element, id) {
+      if (id == "meatDiv") {
+        console.log(element);
+        meatArray.splice(meatArray.indexOf(element), 1);
+        saveToStorage("meats", meatArray);
+      } else if(id == "sideDiv") {
+        sideArray.splice(sideArray.indexOf(element), 1);
+        saveToStorage("sides", sideArray);
+      } else if (id == "sauceDiv") {
+        sauceArray.splice(sauceArray.indexOf(element), 1);
+        saveToStorage("sauces", sauceArray);
+      }
+    }
+
+
+
+    function init() {
+      retrieveFromStorage("meats", meatDiv, meatArray);
+      retrieveFromStorage("sides", sideDiv, sideArray);
+      retrieveFromStorage("sauces", sauceDiv, sauceArray);
+    }
+
+    init();
     </script>
 </body>
 </html>
