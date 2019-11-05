@@ -88,29 +88,35 @@
     let meatArray = [];
     let sideArray = [];
     let sauceArray = [];
-    let rouletteButton = document.querySelector("#rouletteButton");
 
+    let rouletteButton = document.querySelector("#rouletteButton");
 
     function addFood(meat, side, sauce) {
         if (meat != "") {
             addItem(meat, meatDiv, meatArray);
+            saveToStorage("meats", meatArray);
         }
+      
         if (side != "") {
             addItem(side, sideDiv, sideArray);
+          
+            saveToStorage("sides", sideArray);
         }
         if (sauce != "") {
             addItem(sauce, sauceDiv, sauceArray);
+            saveToStorage("sauces", sauceArray);
         }
     }
 
-    function addItem(content, type, typeArray) {
+    function addItem(content, type, contentArray) {
         let itemDiv = document.createElement("div");
         itemDiv.className = "itemDiv"
         let itemContent = document.createElement("p");
         itemContent.innerHTML = content;
         itemDiv.appendChild(itemContent);
         type.appendChild(itemDiv);
-        typeArray.push(content);
+        console.log(content);
+        contentArray.push(content);
     }
 
     addDishButton.addEventListener("click", function() {
@@ -157,12 +163,24 @@
         foodRoulette();
     })
 
-    addFood("steak", "potatoes", "bernaise");
-    addFood("chicken", "rice", "pepper sauce");
-    addFood("salmon", "broccoli", "ketchup");
-    addFood("beef", "salad", "mustard");
-    addFood("lasagna", "pasta", "red wine sauce");
+    
+    function saveToStorage(type, content) {
+      localStorage.setItem(type, JSON.stringify(content));
+    }
+    function retrieveFromStorage(content, type, contentArray) {
+      for (let x = 0; x<JSON.parse(localStorage.getItem(content)).length;x++) {
+        addItem(JSON.parse(localStorage.getItem(content))[x], type,
+          contentArray);
+      }
+    }
+    function init() {
+      console.log(meatArray);
+      retrieveFromStorage("meats", meatDiv, meatArray);
+      retrieveFromStorage("sides", sideDiv, sideArray);
+      retrieveFromStorage("sauces", sauceDiv, sauceArray);
+    }
 
+    init();
     </script>
 </body>
 </html>
