@@ -6,7 +6,7 @@ body {
 }
 #content {
     display: flex;
-    height: 93vh;
+    /*height: 93vh;*/
     justify-content: center;
 }
 .contentDiv {
@@ -27,17 +27,13 @@ body {
     width: 70%;
     display: flex;
     flex-direction: column;
+    padding: 1em;
 }
 #foodReveal {
-    font-size: 5em;
+    font-size: 4em;
     padding: 0;
-    height: 50%;
-}
-#revealDiv {
-    max-height: 30%;
-    min-height: 30%;
-    width: 70%;
-    margin: auto;
+    height: 20%;
+    margin-bottom: 2em;
 }
 #menuDiv {
     width: 30%;
@@ -114,7 +110,7 @@ input, select, textarea {
     font-size: 2em;
     border-radius: 5px;
     border: 2px solid white;
-    width: 30%;
+    min-width: 30%;
     margin: auto;
     margin-bottom: 2em;
 }
@@ -135,11 +131,12 @@ input, select, textarea {
     padding-top: 1em;
     padding-left: 1em;
     background-color: white;
+    z-index: 999;
 
 }
 header {
-    position: sticky;
     top: 0;
+    border-bottom: 1px solid #006495;
 }
 
 #title h1 {
@@ -168,3 +165,49 @@ footer {
     margin: 0;
     color: white;
 }
+@media only screen and (max-width: 900px) {
+    #eatingDiv {
+      width: 100%;
+    }
+    #menuDiv {
+      display: none;
+    }
+    #showButton, #hideButton {
+      display: flex !important;
+    }
+    h2 {
+      padding-top: 0em;
+    }
+    #foodReveal {
+      font-size: 2em;
+    }
+    #title {
+      display: none;
+    }
+    #content {
+      height: 100vh;
+    }
+    .inputDishField, .inputDishField:active, .inputDishField:focus {
+      margin: 0.5em;
+      font-size: initial;
+    }
+}
+#showButton {
+    display: none;
+    float: right;
+    padding: 0.5em;
+    color: #006495;
+    background-color: white;
+}
+
+#hideButton {
+    display: none;
+    float: right;
+    padding: 0.5em;
+    color: white;
+    background-color: #006495;
+}
+h2 {
+    padding: 0.5em;
+}
+
