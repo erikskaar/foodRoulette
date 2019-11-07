@@ -1,0 +1,72 @@
+
+
+body {
+    margin: 0;
+    background-image: url("img.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+header {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5em;
+    color: white;
+}
+.headerBox {
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: line-through underline dashed;
+    text-decoration-color: tomato;
+    display: flex;
+    justify-content: center;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: line-through underline dashed;
+    text-decoration-color: tomato;
+    border: 2px solid tomato;
+    width: 50%;
+    background-color: tomato;
+
+}
+
+
+
+#content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: stretch;
+    
+}
+
+#content > div, .divBox {
+    margin: 1em;
+    border: 1px solid black;
+    padding: 1em;
+    flex-grow: 1;
+    flex-basis: 20%;
+    color: white;
+    background-color: teal;
+    display: flex;
+    justify-content: center;
+}
+
+.divBox {
+    font-size: 2em;
+}
+
+img {
+    width: 60%;
+    height: auto;
+    /*
+    outline: 1em solid white;
+    outline-offset: -3em;
+    */
+}

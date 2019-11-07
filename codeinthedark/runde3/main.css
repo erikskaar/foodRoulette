@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    background-image: url("kok.jpg");
+    overflow: hidden;
+
+}
+#content {
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+    height: 40vh;
+
+
+}
+#content #img {
+    display: flex;
+    justify-content: center;
+}
+
+#img3 {
+    position: fixed;
+    width: 340px;
+    overflow: hidden;
+    border: 2em dashed hotpink;
+    border-radius: 0;
+    height: 340px;
+    animation: spinning 2s linear infinite;
+}
+#spinning {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-top: -44vh;
+
+}
+@keyframes spinning {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#img1 {
+    border-radius:  999px 0 0 999px;
+    max-width: 140px;
+    overflow: hidden;
+    height: 100%;
+    border-left: 1em dashed teal;
+    border-top: 1em dashed hotpink;
+    border-bottom: 1em dashed orange;
+}
+#img2 {
+    max-width: 140px;
+    overflow: hidden;
+    border-radius: 0 999px 999px 0;
+    height: 100%;
+    border-right: 1em dotted red;
+    border-top: 1em dotted blue;
+    border-bottom: 1em dotted green;
+}
